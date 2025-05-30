@@ -254,19 +254,29 @@ class MediaTabManager {
         
         // Update status indicator
         const tabElement = buttonElement.closest('.tab-item');
-        const indicator = tabElement.querySelector('.status-indicator');
-        const statusText = tabElement.querySelector('.tab-status');
+        const indicator = tabElement?.querySelector('.status-indicator');
+        const statusElement = tabElement?.querySelector('.tab-status');
         
-        indicator.className = 'status-indicator';
-        if (isMuted) {
-          indicator.classList.add('muted');
-          statusText.textContent = 'Muted';
-        } else if (tab && tab.playing) {
-          indicator.classList.add('playing');
-          statusText.textContent = 'Playing';
-        } else {
-          indicator.classList.add('paused');
-          statusText.textContent = 'Has Media';
+        if (indicator && statusElement) {
+          // Clear and rebuild the status content properly
+          indicator.className = 'status-indicator';
+          
+          let statusText = '';
+          if (isMuted) {
+            indicator.classList.add('muted');
+            statusText = 'Muted';
+          } else if (tab && tab.playing) {
+            indicator.classList.add('playing');
+            statusText = 'Playing';
+          } else {
+            indicator.classList.add('paused');
+            statusText = 'Has Media';
+          }
+          
+          // Clear the status element and rebuild it
+          statusElement.innerHTML = '';
+          statusElement.appendChild(indicator);
+          statusElement.appendChild(document.createTextNode(statusText));
         }
         
         // Update mute all button

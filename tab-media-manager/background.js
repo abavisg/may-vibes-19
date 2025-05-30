@@ -58,6 +58,7 @@ async function scanMediaTabs() {
           }
           
           let mediaInfo = { hasMediaElements: false, isPlaying: false };
+          let shouldIncludeTab = false;
           
           // Try to inject script to detect media
           try {
@@ -68,15 +69,32 @@ async function scanMediaTabs() {
             
             if (results && results[0] && results[0].result) {
               mediaInfo = results[0].result;
+              // Include tab if it has any media elements
+              shouldIncludeTab = mediaInfo.hasMediaElements;
             }
           } catch (scriptError) {
-            // Fallback: use tab.audible as heuristic
+            // Fallback: use tab.audible as heuristic and check common media sites
             mediaInfo.isPlaying = tab.audible || false;
-            mediaInfo.hasMediaElements = tab.audible || false;
+            
+            // More generous fallback - include tabs that might have media
+            const url = tab.url.toLowerCase();
+            const hasMediaKeywords = url.includes('youtube') || 
+                                   url.includes('vimeo') || 
+                                   url.includes('spotify') || 
+                                   url.includes('soundcloud') || 
+                                   url.includes('twitch') || 
+                                   url.includes('netflix') || 
+                                   url.includes('hulu') || 
+                                   url.includes('video') || 
+                                   url.includes('audio') ||
+                                   tab.audible; // Include if audible
+            
+            mediaInfo.hasMediaElements = hasMediaKeywords;
+            shouldIncludeTab = hasMediaKeywords;
           }
           
-          // Include tab if it has media elements or is audible
-          if (mediaInfo.hasMediaElements || tab.audible || mediaInfo.isPlaying) {
+          // Include tab if it has media elements, is audible, or is playing
+          if (shouldIncludeTab || mediaInfo.hasMediaElements || tab.audible || mediaInfo.isPlaying) {
             return {
               id: tab.id,
               title: tab.title || 'Untitled',

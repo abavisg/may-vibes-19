@@ -5,7 +5,7 @@
 ## 🎯 Features
 
 - **🔇 One-Click Mute All**: Instantly mute all tabs playing audio or video
-- **📋 Live Media Detection**: Real-time scanning for tabs with active media elements
+- **📋 Comprehensive Media Detection**: Shows all tabs with audio/video elements, whether playing or paused
 - **🎵 Individual Tab Control**: Mute/unmute specific tabs with a single click
 - **📊 Visual Status Indicators**: Clear display of playing, paused, and muted states
 - **🔄 Auto-Refresh**: Automatically updates the tab list every 3 seconds
@@ -31,7 +31,7 @@ The extension will be available on the Chrome Web Store after initial testing ph
 ### Basic Workflow
 
 1. **Click the extension icon** in your Chrome toolbar
-2. **View all media tabs** - The popup shows all tabs with audio/video elements
+2. **View all media tabs** - The popup shows all tabs with audio/video elements (playing or paused)
 3. **Mute individual tabs** - Click the "Mute" button next to any tab
 4. **Mute all at once** - Use the "Mute All Tabs" button for emergency silence
 5. **Focus a tab** - Click anywhere on a tab row (except the mute button) to switch to it

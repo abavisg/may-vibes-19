@@ -47,7 +47,7 @@ This Chrome extension solves a common problem: managing multiple tabs with audio
 | Feature | Description | Status |
 |---------|-------------|--------|
 | **One-Click Mute All** | Instantly silence all tabs with media | ✅ |
-| **Live Media Detection** | Real-time scanning for audio/video elements | ✅ |
+| **Comprehensive Media Detection** | Shows all tabs with audio/video elements (playing or paused) | ✅ |
 | **Individual Tab Control** | Mute/unmute specific tabs | ✅ |
 | **Visual Status Indicators** | Playing, paused, and muted states | ✅ |
 | **Auto-Refresh** | Updates every 3 seconds automatically | ✅ |
