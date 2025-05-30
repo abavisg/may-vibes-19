@@ -51,7 +51,7 @@ This Chrome extension solves a common problem: managing multiple tabs with audio
 | **Individual Tab Control** | Mute/unmute specific tabs | ✅ |
 | **Visual Status Indicators** | Playing, paused, and muted states | ✅ |
 | **Auto-Refresh** | Updates every 3 seconds automatically | ✅ |
-| **Performance Optimized** | Handles 200+ tabs efficiently | ✅ |
+| **Performance Optimized** | Smart caching and event-driven updates for efficiency | ✅ |
 | **Modern UI** | Clean, responsive design | ✅ |
 | **Quick Tab Switching** | Click to focus any tab | ✅ |
 

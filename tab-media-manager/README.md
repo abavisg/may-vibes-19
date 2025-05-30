@@ -60,10 +60,13 @@ The extension will be available on the Chrome Web Store after initial testing ph
 
 ### Performance Features
 
-- **Batch Processing**: Handles up to 200 tabs efficiently
+- **Smart Caching**: 10-second cache validity reduces unnecessary tab rescanning
+- **Event-Driven Updates**: Listens to Chrome tab events for immediate responsiveness
+- **Intelligent Scanning**: Full scans every 30 seconds, quick scans for cached/audible tabs
+- **Batch Processing**: Handles up to 200 tabs efficiently in 10-tab batches
 - **Fallback Detection**: Uses `tab.audible` when script injection fails
 - **Error Handling**: Graceful degradation for protected pages
-- **Memory Efficient**: Minimal background resource usage
+- **Memory Efficient**: Automatic cache cleanup and minimal background resource usage
 
 ### Supported Media
 

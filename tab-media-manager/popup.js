@@ -38,19 +38,19 @@ class MediaTabManager {
    */
   bindEvents() {
     // Refresh buttons
-    this.elements.refreshBtn.addEventListener('click', () => this.loadMediaTabs());
-    this.elements.refreshEmptyBtn.addEventListener('click', () => this.loadMediaTabs());
-    this.elements.retryBtn.addEventListener('click', () => this.loadMediaTabs());
+    this.elements.refreshBtn.addEventListener('click', () => this.loadMediaTabs(true, true)); // Force refresh
+    this.elements.refreshEmptyBtn.addEventListener('click', () => this.loadMediaTabs(true, true)); // Force refresh
+    this.elements.retryBtn.addEventListener('click', () => this.loadMediaTabs(true, true)); // Force refresh
     
     // Mute all button
     this.elements.muteAllBtn.addEventListener('click', () => this.muteAllTabs());
     
-    // Auto-refresh every 3 seconds when popup is open
+    // Optimized auto-refresh - less frequent and smarter
     setInterval(() => {
       if (!this.isLoading) {
-        this.loadMediaTabs(false); // Silent refresh
+        this.loadMediaTabs(false); // Silent refresh, no force
       }
-    }, 3000);
+    }, 5000); // Increased from 3 to 5 seconds
   }
   
   /**
@@ -70,8 +70,8 @@ class MediaTabManager {
   /**
    * Load media tabs from background script
    */
-  async loadMediaTabs(showLoading = true) {
-    if (this.isLoading) return;
+  async loadMediaTabs(showLoading = true, force = false) {
+    if (this.isLoading && !force) return;
     
     this.isLoading = true;
     
@@ -80,7 +80,10 @@ class MediaTabManager {
     }
     
     try {
-      const response = await this.sendMessage({ action: 'scanMediaTabs' });
+      const response = await this.sendMessage({ 
+        action: 'scanMediaTabs',
+        forceRefresh: force 
+      });
       
       if (response && Array.isArray(response)) {
         this.mediaTabs = response;
